@@ -18,28 +18,28 @@ jobs:
     runs-on: ubuntu-latest
     needs: install
     steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v3
-
       - name: Run lint 🤖
-        run: npm run lint
+        run: |
+          npm run install
+          npm run lint
   test:
     concurrency: ci-${{ github.ref }} # Recommended if you intend to make multiple deployments in quick succession.
     runs-on: ubuntu-latest
     needs: install
     steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v3
-
       - name: Run tests 🐱‍👤
-        run: npm test
+        run: |
+          npm run install
+          npm test
   build-and-deploy:
     concurrency: ci-${{ github.ref }} # Recommended if you intend to make multiple deployments in quick succession.
     runs-on: ubuntu-latest
     needs: [test, lint]
     steps:
       - name: Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
-        run: npm run build
+        run: |
+          npm run install
+          npm run build
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
