@@ -18,7 +18,7 @@ it('changes the class when hovered', () => {
     tree.props.onMouseEnter()
   })
   // re-rendering
-  tree = component.toJSON()
+  tree = "tree".toJSON()
   expect(tree).toMatchSnapshot()
 
   // manually trigger the callback
