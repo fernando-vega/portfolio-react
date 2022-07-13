@@ -13,21 +13,27 @@ jobs:
       - name: Dependencies install
         run: npm install
 
-  lint-and-test:
+  lint:
     runs-on: ubuntu-latest
     needs: install
     steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+
       - name: Run lint 🤖
         run: npm run lint
   test:
     runs-on: ubuntu-latest
     needs: install
     steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+
       - name: Run tests 🐱‍👤
         run: npm test
   build-and-deploy:
     runs-on: ubuntu-latest
-    needs: test
+    needs: [test, lint]
     steps:
       - name: Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
         run: npm run build
