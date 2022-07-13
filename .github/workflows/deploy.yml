@@ -7,7 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run lint 🤖
-        run: npm run lint
+        run: |
+          npm install
+          npm run lint
   test:
     runs-on: ubuntu-latest
     steps:
