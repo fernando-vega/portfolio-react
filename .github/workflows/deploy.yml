@@ -3,6 +3,17 @@ on: [push]
 permissions:
   contents: write
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run lint 🤖
+        run: npm run lint
+  test:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Run tests 🐱‍👤
+        run: npm test
   build-and-deploy:
     concurrency: ci-${{ github.ref }} # Recommended if you intend to make multiple deployments in quick succession.
     runs-on: ubuntu-latest
